@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
-from pykrx import stock
 import warnings
 import datetime as dt
 from streamlit_extras.switch_page_button import switch_page
@@ -13,9 +12,6 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 import base64
 from fuzzywuzzy import process
-import pyttsx3
-import speech_recognition as sr
-
 st.set_page_config(page_icon="💸", layout="wide")
 
 # 초기 세션 상태 설정
@@ -263,20 +259,7 @@ def main():
     text_to_read = "시각장애인 이시면 일번을 말해주세요"
 # 텍스트 읽기 함수 호출
     esg_text()
-    read_text(text_to_read)
-    recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        for i in range(1):
-            try:
-                print("말씀해주세요...")
-            
-                audio = recognizer.listen(source)
-                text = recognizer.recognize_google(audio, language='ko-KR')
-                if text=="1번":
-                    read_text("네 알겠습니다")
-                    switch_page('시각장애인용 정보 페이지')    
-            except:
-                pass
+
 if __name__ == "__main__":
     main()
 
